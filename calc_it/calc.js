@@ -24,6 +24,15 @@ var height;
 var BMI;
 /////////////////////////////////////////////////////////
 
+/////variables for Trip calculations///////////////
+var distance;
+var speed;
+var milePerGallon;
+var costPerGallon;
+var time;
+var cost;
+//////////////////////////////////////////////////////////////////
+
 
 //main flows section
 
@@ -46,7 +55,7 @@ function runCalculator () {
     break;
 
     case "Trip":
-    runTripCalculatore();
+    runTripCalculator();
     break;
 
     default:
@@ -82,6 +91,19 @@ function runBMICalculator() {
   alert("The BMI is " + BMI);
 }
 
+function runTripCalculator() {
+  distance = getValidInput("number", "distance in miles.");
+  speed = getValidInput("number", "speed in mph.");
+  milePerGallon = getValidInput("number", "Fuel Efficiency in mpg.");
+  costPerGallon = getValidInput("number", "Cost per Gallon.");
+  var result = doTripCalculation(distance, speed, milePerGallon, costPerGallon);
+  if (result["cost"] === "infinite") {
+    alert("The speed is too high for the given Fuel Efficiency in mpg!");
+  }
+  else {
+    alert("Your trip will take " + result["time"] + " hours and cost £" + result["cost"] +".");
+  }
+}
 //end of main flows section//
 
 
@@ -129,6 +151,19 @@ function doBMICalculation(w, h, m) {
   BMI = w/Math.pow(h,2);
   (m === "Imperial") ? BMI = (BMI * 703) : BMI;
   return BMI;
+}
+
+function reduceFuelEfficiency(s, mpg) {
+  var overSpeed = s > 60 ? s-60 : 0;
+  var mpgReduction = overSpeed * 2;
+  return mpgReduction;
+}
+
+function doTripCalculation(d, s, mpg, cpg) {
+  time = d/s;
+  mpg -= reduceFuelEfficiency(s, mpg);
+  cost = mpg <= 0 ? "infinite" : (d/mpg * cpg);
+  return {"time": time, "cost": cost};
 }
 //end calculation logics section//
 
