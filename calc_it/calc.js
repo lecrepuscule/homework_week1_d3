@@ -4,17 +4,43 @@ alert("This is a calculator, it will ask you for a number, an operator, and anot
 var firstNum;
 var secondNum;
 var operator;
+var result;
+var validOperators = ["+", "-" , "*", "/"];
 
 
-function getValidNumber () {
-  var userInput = prompt("Choose the first number.");
-  while ( isNaN(Number(userInput)) ) {
-    userInput = prompt("Please enter a number.");
+function getValidInput (inputType) {
+  var userInput
+  switch (inputType) {
+    case "number":
+    userInput = prompt("Choose enter a number.");
+    while ( isNaN(Number(userInput)) ) {
+      userInput = prompt("Please enter a number!");
+    }
+    return Number(userInput);
+    break;
+
+    case "operator":
+    userInput = prompt("Please enter an operator.");
+    while (validOperators.indexOf(userInput) === -1 ) {
+      userInput = prompt("Please enter a valid operator!")
+    }
+    return userInput;
+    break;
+
+    default:
+    console.log("getValidNumber has invalid argument!");
   }
-  return Number(userInput);
 }
 
-firstNum = getValidNumber();
+
+firstNum = getValidInput("number");
+operator = getValidInput("operator");
+secondNum = getValidInput("number");
+result = firstNum
+
+
+
+alert(firstNum)
 
 // var operator = prompt("Please choose '+' for addition, '-' for subtraction")
 
