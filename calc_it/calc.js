@@ -63,14 +63,19 @@ function doBasicMath (operator, firstNum, secondNum) {
   }
 }
 
-firstNum = getValidInput("number");
-operator = getValidInput("operator");
-secondNum = getValidInput("number");
-result = doBasicMath (operator, firstNum, secondNum);
+function runBasicCalculator () {
+
+  firstNum = getValidInput("number");
+  operator = getValidInput("operator");
+  operator === "sqrt" ? secondNum = "" : secondNum = getValidInput("number"); 
+  result = doBasicMath (operator, firstNum, secondNum);
+
+  alert(firstNum + operator + secondNum + " = " + result);
+}
 
 
+runBasicCalculator();
 
-alert(firstNum + operator + secondNum + " = " + result);
 
 // var operator = prompt("Please choose '+' for addition, '-' for subtraction")
 
