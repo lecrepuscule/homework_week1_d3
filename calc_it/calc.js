@@ -11,9 +11,10 @@ var validOperators = ["+", "-" , "*", "/", "power", "sqrt"];
 /////////////////////////////////////////////////////////////////
 
 /////variable declarations for Morgage calculations///////////////
-var principle;
+var principal;
 var interestRate;
-var repayments;
+var numberOfPayments;
+var monthlyPayment;
 //////////////////////////////////////////////////////////////////
 
 function getCalculatorType (userInput) {
@@ -29,10 +30,21 @@ function getInput (inputName) {
   return userInput;
 }
 
+function doMorgageCalculation (p, ir, n) {
+  var m = p * ir * Math.pow( ( 1 + ir ), n )/( Math.pow( 1 + ir, n ) - 1);
+  return m;
+}
 
-// function runMorgageCalculator () {
+var m = doMorgageCalculation (100000, 0.005, 360);
+console.log(m);
 
-// }
+function runMorgageCalculator () {
+  principal = getValidInput("number", "Principal");
+  interestRate = getValidInput("number", "Monthly Insterest Rate");
+  numberOfPayments = getValidInput("number", "Total Number of Payments");
+  monthlyPayment = doMorgageCalculation (principal, interestRate, numberOfPayments);
+  alert("The monthly payment is " + monthlyPayment);
+}
 
 
 function getValidInput (inputType, inputName) {
@@ -92,7 +104,7 @@ function doBasicMath (operator, firstNum, secondNum) {
 
 function runBasicCalculator () {
 
-  alert("This is a calculator, it will ask you for a number, an operator, and another number, in that order, then perform the arithmetic operation on those two numbers. Click 'OK' to start.");
+  alert("This is an Arithmetic calculator, it will ask you for a number, an operator, and another number, in that order, then perform the arithmetic operation on those two numbers. Click 'OK' to start.");
 
   firstNum = getValidInput("number", "first number");
   operator = getValidInput("operator", "operator");
@@ -102,7 +114,7 @@ function runBasicCalculator () {
   alert(firstNum + operator + secondNum + " = " + result);
 }
 
-runBasicCalculator();
+
 
 
 
