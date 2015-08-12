@@ -35,11 +35,11 @@ function getInput (inputName) {
 // }
 
 
-function getValidInput (inputType) {
+function getValidInput (inputType, inputName) {
   var userInput
   switch (inputType) {
     case "number":
-    userInput = getInput("number");
+    userInput = getInput(inputName);
     while ( isNaN(Number(userInput)) ) {
       userInput = prompt("Please enter an actual number!");
     }
@@ -47,7 +47,7 @@ function getValidInput (inputType) {
     break;
 
     case "operator":
-    userInput = getInput("operator");
+    userInput = getInput(inputName);
     while (validOperators.indexOf(userInput) === -1 ) {
       userInput = prompt("Please enter a valid operator!")
     }
@@ -94,9 +94,9 @@ function runBasicCalculator () {
 
   alert("This is a calculator, it will ask you for a number, an operator, and another number, in that order, then perform the arithmetic operation on those two numbers. Click 'OK' to start.");
 
-  firstNum = getValidInput("number");
-  operator = getValidInput("operator");
-  operator === "sqrt" ? secondNum = "" : secondNum = getValidInput("number"); 
+  firstNum = getValidInput("number", "first number");
+  operator = getValidInput("operator", "operator");
+  operator === "sqrt" ? secondNum = "" : secondNum = getValidInput("number", "second number"); 
   result = doBasicMath (operator, firstNum, secondNum);
 
   alert(firstNum + operator + secondNum + " = " + result);
