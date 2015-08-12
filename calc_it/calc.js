@@ -28,19 +28,41 @@ function getValidInput (inputType) {
     break;
 
     default:
-    console.log("getValidNumber has invalid argument!");
+    console.log("getValidNumber has invalid arguments!");
   }
 }
 
+function doBasicMath (operator, firstNum, secondNum) {
+  switch (operator) {
+    case "+":
+    return (firstNum + secondNum);
+    break;
+
+    case "-":
+    return (firstNum - secondNum);
+    break;
+
+    case "*":
+    return (firstNum * secondNum);
+    break;
+
+    case "/":
+    return (firstNum / secondNum);
+    break;
+
+    default:
+    console.log("doBasicMath has invalid arguments!");
+  }
+}
 
 firstNum = getValidInput("number");
 operator = getValidInput("operator");
 secondNum = getValidInput("number");
-result = firstNum
+result = doBasicMath (operator, firstNum, secondNum);
 
 
 
-alert(firstNum)
+alert(firstNum + operator + secondNum + " = " + result);
 
 // var operator = prompt("Please choose '+' for addition, '-' for subtraction")
 
