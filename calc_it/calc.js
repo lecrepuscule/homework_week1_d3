@@ -24,20 +24,30 @@ function getCalculatorType (userInput) {
   return userInput;
 }
 
+function getInput (inputName) {
+  var userInput = prompt("Choose enter the " + inputName);
+  return userInput;
+}
+
+
+// function runMorgageCalculator () {
+
+// }
+
 
 function getValidInput (inputType) {
   var userInput
   switch (inputType) {
     case "number":
-    userInput = prompt("Choose enter a number.");
+    userInput = getInput("number");
     while ( isNaN(Number(userInput)) ) {
-      userInput = prompt("Please enter a number!");
+      userInput = prompt("Please enter an actual number!");
     }
     return Number(userInput);
     break;
 
     case "operator":
-    userInput = prompt("Please enter an operator.");
+    userInput = getInput("operator");
     while (validOperators.indexOf(userInput) === -1 ) {
       userInput = prompt("Please enter a valid operator!")
     }
@@ -92,7 +102,7 @@ function runBasicCalculator () {
   alert(firstNum + operator + secondNum + " = " + result);
 }
 
-
+runBasicCalculator();
 
 
 
