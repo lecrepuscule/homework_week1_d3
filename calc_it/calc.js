@@ -17,6 +17,23 @@ var numberOfPayments;
 var monthlyPayment;
 //////////////////////////////////////////////////////////////////
 
+function runCalculator () {
+  alert("This is a calculator with multiple features, please choose from " + validCalculatorTypes + ".");
+  var calculatorType = getInput("Calculator Type");
+  var validCalculatorType = getCalculatorType(calculatorType);
+
+  switch (validCalculatorType) {
+    case "Arithmetics":
+    runArithmeticCalculator();
+    break;
+    case "Morgage":
+    runMorgageCalculator();
+    break;
+  }
+}
+
+runCalculator();
+
 function getCalculatorType (userInput) {
   while (validCalculatorTypes.indexOf(userInput) === -1)
   {
@@ -35,9 +52,6 @@ function doMorgageCalculation (p, ir, n) {
   return m;
 }
 
-var m = doMorgageCalculation (100000, 0.005, 360);
-console.log(m);
-
 function runMorgageCalculator () {
   principal = getValidInput("number", "Principal");
   interestRate = getValidInput("number", "Monthly Insterest Rate");
@@ -45,7 +59,6 @@ function runMorgageCalculator () {
   monthlyPayment = doMorgageCalculation (principal, interestRate, numberOfPayments);
   alert("The monthly payment is " + monthlyPayment);
 }
-
 
 function getValidInput (inputType, inputName) {
   var userInput
@@ -102,7 +115,7 @@ function doBasicMath (operator, firstNum, secondNum) {
   }
 }
 
-function runBasicCalculator () {
+function runArithmeticCalculator () {
 
   alert("This is an Arithmetic calculator, it will ask you for a number, an operator, and another number, in that order, then perform the arithmetic operation on those two numbers. Click 'OK' to start.");
 
