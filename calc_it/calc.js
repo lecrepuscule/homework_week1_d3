@@ -5,7 +5,7 @@ var firstNum;
 var secondNum;
 var operator;
 var result;
-var validOperators = ["+", "-" , "*", "/"];
+var validOperators = ["+", "-" , "*", "/", "power", "sqrt"];
 
 
 function getValidInput (inputType) {
@@ -48,6 +48,14 @@ function doBasicMath (operator, firstNum, secondNum) {
 
     case "/":
     return (firstNum / secondNum);
+    break;
+
+    case "power":
+    return Math.pow(firstNum, secondNum);
+    break;
+
+    case "sqrt":
+    return Math.sqrt(firstNum, secondNum);
     break;
 
     default:
