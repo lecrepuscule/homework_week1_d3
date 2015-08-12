@@ -1,6 +1,6 @@
 
-var validCalculatorTypes = ["Arithmetics", "Morgage"];
-var calculatorType;
+var validFeatures = ["Arithmetics", "Morgage"];
+var feature;
 
 ////variable declarations for Arithmetic calculations////////////
 var firstNum;
@@ -18,14 +18,14 @@ var monthlyPayment;
 //////////////////////////////////////////////////////////////////
 
 function runCalculator () {
-  alert("This is a calculator with multiple features, please choose from " + validCalculatorTypes + ".");
-  var calculatorType = getInput("Calculator Type");
-  var validCalculatorType = getCalculatorType(calculatorType);
+  alert("This is a calculator with multiple features, please choose from " + validFeatures + ".");
+  var validFeature = getValidInput("feature", "Calculator Feature");
 
-  switch (validCalculatorType) {
+  switch (validFeature) {
     case "Arithmetics":
     runArithmeticCalculator();
     break;
+
     case "Morgage":
     runMorgageCalculator();
     break;
@@ -33,14 +33,6 @@ function runCalculator () {
 }
 
 runCalculator();
-
-function getCalculatorType (userInput) {
-  while (validCalculatorTypes.indexOf(userInput) === -1)
-  {
-    userInput = prompt("Please choose from " + validCalculatorTypes + "!");
-  }
-  return userInput;
-}
 
 function getInput (inputName) {
   var userInput = prompt("Choose enter the " + inputName);
@@ -61,10 +53,9 @@ function runMorgageCalculator () {
 }
 
 function getValidInput (inputType, inputName) {
-  var userInput
+  var userInput = getInput(inputName);
   switch (inputType) {
     case "number":
-    userInput = getInput(inputName);
     while ( isNaN(Number(userInput)) ) {
       userInput = prompt("Please enter an actual number!");
     }
@@ -72,15 +63,21 @@ function getValidInput (inputType, inputName) {
     break;
 
     case "operator":
-    userInput = getInput(inputName);
     while (validOperators.indexOf(userInput) === -1 ) {
       userInput = prompt("Please enter a valid operator!")
     }
     return userInput;
     break;
 
+    case "feature":
+    while (validFeatures.indexOf(userInput) === -1) {
+      userInput = prompt("Please choose from " + validFeatures + "!");
+    }
+    return userInput;
+    break;
+
     default:
-    console.log("getValidNumber has invalid arguments!");
+    console.log("getValidInput has invalid arguments!");
   }
 }
 
