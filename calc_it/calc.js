@@ -36,31 +36,37 @@ var cost;
 
 //main flows section
 
-//Add backout and other navigation options if time permits
 function runCalculator () {
   alert("This is a calculator with multiple features, please choose from " + validFeatures + ".");
-  var validFeature = getValidInput("feature", "Calculator Feature");
+  var running = 1;
 
-  switch (validFeature) {
-    case "Arithmetics":
-    runArithmeticCalculator();
-    break;
+  while (running) {
+    var validFeature = getValidInput("feature", "Calculator Feature");
 
-    case "Morgage":
-    runMorgageCalculator();
-    break;
+    switch (validFeature) {
+      case "Arithmetics":
+      runArithmeticCalculator();
+      break;
 
-    case "BMI":
-    runBMICalculator();
-    break;
+      case "Morgage":
+      runMorgageCalculator();
+      break;
 
-    case "Trip":
-    runTripCalculator();
-    break;
+      case "BMI":
+      runBMICalculator();
+      break;
 
-    default:
-    console.log("runCalculator does not have this feature!");
+      case "Trip":
+      runTripCalculator();
+      break;
+
+      default:
+      console.log("runCalculator does not have this feature!");
+    }
+    running = prompt("Enter 'n' to exit the calculator, or any other key to do another calculation");
+    running = (running === "n") ? 0 : 1;
   }
+  alert("Bye!");
 }
 
 function runArithmeticCalculator () {
@@ -88,7 +94,7 @@ function runBMICalculator() {
   weight = getValidInput("number", "weight in " + measurement + " measurement");
   height = getValidInput("number", "height in " + measurement + " measurement");
   BMI = doBMICalculation(weight, height, measurement);
-  alert("The BMI is " + BMI);
+  alert("The BMI for " + weight + " and height " + height + " is " + BMI);
 }
 
 function runTripCalculator() {
@@ -182,14 +188,14 @@ function getValidInput (inputType, inputName) {
   switch (inputType) {
     case "number":
     while ( isNaN(Number(userInput)) ) {
-      userInput = prompt("Please enter an actual number!");
+      userInput = prompt("Please enter an actual number for " + inputName + "!");
     }
     return Number(userInput);
     break;
 
     case "operator":
     while (validOperators.indexOf(userInput) === -1 ) {
-      userInput = prompt("Please enter a valid operator!")
+      userInput = prompt("Please enter a valid " + inputName + " from " + validOperators +"!");
     }
     return userInput;
     break;
