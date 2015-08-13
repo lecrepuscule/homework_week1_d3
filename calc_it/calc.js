@@ -1,13 +1,18 @@
 
-var validFeatures = ["Arithmetics", "Morgage", "BMI", "Trip"];
+// var validFeatures = ["Arithmetics", "Morgage", "BMI", "Trip"];
 var feature;
+var validInputs = {
+  "feature": ["Arithmetics", "Morgage", "BMI", "Trip"],
+  "operator": ["+", "-" , "*", "/", "power", "sqrt"],
+  "measurement": ["Imperial", "Metric"]
+};
 
 ////variables for Arithmetic calculations////////////
 var firstNum;
 var secondNum;
 var operator;
 var result;
-var validOperators = ["+", "-" , "*", "/", "power", "sqrt"];
+// var validOperators = ["+", "-" , "*", "/", "power", "sqrt"];
 /////////////////////////////////////////////////////////////////
 
 /////variables for Morgage calculations///////////////
@@ -18,7 +23,7 @@ var monthlyPayment;
 //////////////////////////////////////////////////////////////////
 
 /////variables for BMI calculations//////////////////////////
-var validMeasurements = ["Imperial", "Metric"];
+// var validMeasurements = ["Imperial", "Metric"];
 var weight;
 var height;
 var BMI;
@@ -38,7 +43,7 @@ var cost;
 //perhaps split out the flow control from the main flow, and add in a menu function to have more user friendly input acceptance if time permits
 
 function runCalculator () {
-  alert("This is a calculator with multiple features, please choose from " + validFeatures + ".");
+  alert("This is a calculator with multiple features, please choose from " + validInputs.features + ".");
   var running = 1;
 
   while (running) {
@@ -184,41 +189,61 @@ function getInput (inputName) {
   return userInput;
 }
 
-function getValidInput (inputType, inputName) {
+
+ function getValidInput (inputType, inputName) {
   var userInput = getInput(inputName);
-  switch (inputType) {
-    case "number":
+  var inputType = inputType;  // why do I have to do this?!!!! WHY!!!
+  console.log(validInputs[inputType]);
+  if (inputType === "number") {
     while ( isNaN(Number(userInput)) ) {
-      userInput = prompt("Please enter an actual number for " + inputName + "!");
-    }
-    return Number(userInput);
-    break;
-
-    case "operator":
-    while (validOperators.indexOf(userInput) === -1 ) {
-      userInput = prompt("Please enter a valid " + inputName + " from " + validOperators +"!");
-    }
-    return userInput;
-    break;
-
-    case "feature":
-    while (validFeatures.indexOf(userInput) === -1) {
-      userInput = prompt("Please choose from " + validFeatures + "!");
+        userInput = prompt("Please enter an actual number for " + inputName + "!");
+      }
+      return Number(userInput);
+  }
+  else {
+    while (validInputs[inputType].indexOf(userInput) === -1 ) {
+      userInput = prompt("Please enter a valid " + inputName + " from " + validInputs[inputType] +"!");
     }
     return userInput;
-    break;
-
-    case "measurement":
-    while (validMeasurements.indexOf(userInput) === -1) {
-      userInput = prompt("Please choose from " + validMeasurements + "!");
-    }
-    return userInput;
-    break;
-
-    default:
-    console.log("getValidInput has invalid arguments!");
   }
 }
+
+
+// function getValidInput (inputType, inputName) {
+//   var userInput = getInput(inputName);
+//   switch (inputType) {
+//     case "number":
+//     while ( isNaN(Number(userInput)) ) {
+//       userInput = prompt("Please enter an actual number for " + inputName + "!");
+//     }
+//     return Number(userInput);
+//     break;
+
+//     case "operator":
+//     while (validOperators.indexOf(userInput) === -1 ) {
+//       userInput = prompt("Please enter a valid " + inputName + " from " + validOperators +"!");
+//     }
+//     return userInput;
+//     break;
+
+//     case "feature":
+//     while (validFeatures.indexOf(userInput) === -1) {
+//       userInput = prompt("Please choose from " + validFeatures + "!");
+//     }
+//     return userInput;
+//     break;
+
+//     case "measurement":
+//     while (validMeasurements.indexOf(userInput) === -1) {
+//       userInput = prompt("Please choose from " + validMeasurements + "!");
+//     }
+//     return userInput;
+//     break;
+
+//     default:
+//     console.log("getValidInput has invalid arguments!");
+//   }
+// }
 //end of get inputs and constraints section//
 
 runCalculator();
