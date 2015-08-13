@@ -35,6 +35,7 @@ var cost;
 
 
 //main flows section
+//perhaps split out the flow control from the main flow, and add in a menu function to have more user friendly input acceptance if time permits
 
 function runCalculator () {
   alert("This is a calculator with multiple features, please choose from " + validFeatures + ".");
